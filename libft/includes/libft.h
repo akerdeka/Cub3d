@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 15:29:47 by akerdeka     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 18:52:21 by akerdeka    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 13:37:28 by akerdeka    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,5 +59,6 @@ char	*ft_itoa_base(unsigned long long value, int base);
 char	*ft_itoa_base_maj(unsigned long long value, int base);
 char	*ft_uitoa(unsigned int n);
 char	*ft_strndup(const char *s, int n);
+int		get_next_line(int fd, char **line);
 
 #endif

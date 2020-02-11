@@ -12,7 +12,8 @@ SRCS_LIBFT =	$(addprefix ./, ft_strndup.c ft_strtok.c ft_isalnum.c\
 					ft_isascii.c ft_memccpy.c ft_memmove.c ft_putnbr_fd.c\
 					ft_strdup.c ft_strlen.c ft_strrchr.c ft_toupper.c\
 					ft_calloc.c ft_isdigit.c ft_memchr.c ft_memset.c ft_putstr_fd.c\
-					ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_strfjoin.c)
+					ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_strfjoin.c get_next_line.c\
+					ft_itoa_base.c ft_itoa_base_maj.c ft_uitoa.c)
 
 SRCS_PRINTF =	$(addprefix Printf/, algo.c\
 					convert.c convert_c.c convert_d.c\
@@ -46,15 +47,16 @@ $(NAME):	$(OBJS) $(HEADER)
 $(OBJS_PATH):
 	@mkdir -p bin/ 2> /dev/null
 	@mkdir -p bin/Printf 2> /dev/null
+	@mkdir -p bin/Get_Next_Line 2> /dev/null
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADER) Makefile
 	@gcc $(FLAG) -g3 -I ${HEADER} -c $< -o $@
 
 clean:
-	rm -f $(OBJS_PATH)
+	rm -rf $(OBJS_PATH)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
