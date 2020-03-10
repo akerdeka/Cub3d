@@ -21,7 +21,13 @@ SRCS_PRINTF =	$(addprefix Printf/, algo.c\
 					convert_star.c convert_u.c convert_x.c\
 					feild.c flag_gest.c ft_printf.c gest_precision.c)
 
-SRCS_NAME =	$(SRCS_LIBFT) $(SRCS_PRINTF)
+SRCS_DPRINTF =	$(addprefix dprintf/, algo.c\
+					convert.c convert_c.c convert_d.c\
+					convert_p.c convert_percent.c convert_s.c\
+					convert_star.c convert_u.c convert_x.c\
+					feild.c flag_gest.c ft_dprintf.c gest_precision.c)
+
+SRCS_NAME =	$(SRCS_LIBFT) $(SRCS_PRINTF) $(SRCS_DPRINTF)
 
 
 SRCS_PATH =	srcs/
@@ -47,6 +53,7 @@ $(NAME):	$(OBJS) $(HEADER)
 $(OBJS_PATH):
 	@mkdir -p bin/ 2> /dev/null
 	@mkdir -p bin/Printf 2> /dev/null
+	@mkdir -p bin/dprintf 2> /dev/null
 	@mkdir -p bin/Get_Next_Line 2> /dev/null
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADER) Makefile

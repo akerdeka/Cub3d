@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   parsing.c                                        .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/16 16:02:11 by akerdeka     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 18:11:56 by akerdeka    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/16 16:02:11 by akerdeka          #+#    #+#             */
+/*   Updated: 2020/03/09 17:07:53 by akerdeka         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
@@ -19,10 +18,10 @@ static int		f_checker(t_cub_struct *cub, char *line)
 	int i;
 
 	i = 0;
-	cub->color_flor[0] = ft_strtok(line, " ,\t");
-	cub->color_flor[1] = ft_strtok(NULL, " ,\t");
-	cub->color_flor[2] = ft_strtok(NULL, " ,\t");
-	cub->color_flor[3] = ft_strtok(NULL, " ,\t");
+	cub->color_flor[0] = ft_strdup(ft_strtok(line, " ,\t"));
+	cub->color_flor[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
+	cub->color_flor[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
+	cub->color_flor[3] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->color_flor[4] = ft_strtok(NULL, " ,\t");
 	while (i < 5)
 	{
@@ -31,7 +30,7 @@ static int		f_checker(t_cub_struct *cub, char *line)
 	}
 	ft_printf("\n");
 	if (cub->color_flor[4] != NULL || cub->color_flor[3] == NULL)
-		error(0);
+		error(cub, 0);
 	f_converter(cub);
 	return (0);
 }
@@ -41,10 +40,10 @@ static int		c_checker(t_cub_struct *cub, char *line)
 	int i;
 
 	i = 0;
-	cub->color_ceiling[0] = ft_strtok(line, " ,\t");
-	cub->color_ceiling[1] = ft_strtok(NULL, " ,\t");
-	cub->color_ceiling[2] = ft_strtok(NULL, " ,\t");
-	cub->color_ceiling[3] = ft_strtok(NULL, " ,\t");
+	cub->color_ceiling[0] = ft_strdup(ft_strtok(line, " ,\t"));
+	cub->color_ceiling[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
+	cub->color_ceiling[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
+	cub->color_ceiling[3] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->color_ceiling[4] = ft_strtok(NULL, " ,\t");
 	while (i < 5)
 	{
@@ -53,7 +52,7 @@ static int		c_checker(t_cub_struct *cub, char *line)
 	}
 	ft_printf("\n");
 	if (cub->color_ceiling[4] != NULL || cub->color_ceiling[3] == NULL)
-		error(0);
+		error(cub, 0);
 	c_converter_cub(cub);
 	return (0);
 }
@@ -61,12 +60,11 @@ static int		c_checker(t_cub_struct *cub, char *line)
 static int		r_checker(t_cub_struct *cub, char *line)
 {
 	int	i;
-	int	color;
 
 	i = 0;
-	cub->res[0] = ft_strtok(line, " \t");
-	cub->res[1] = ft_strtok(NULL, " \t");
-	cub->res[2] = ft_strtok(NULL, " \t");
+	cub->res[0] = ft_strdup(ft_strtok(line, " ,\t"));
+	cub->res[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
+	cub->res[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->res[3] = ft_strtok(NULL, " \t");
 	while (i < 4)
 	{
@@ -74,13 +72,14 @@ static int		r_checker(t_cub_struct *cub, char *line)
 		i++;
 	}
 	if (cub->res[3] != NULL || cub->res[2] == NULL)
-		error(0);
-	i = 0;
+		error(cub, 0);
+	// all digit ??
+	i = 1;
 	while (i <= 2)
 	{
-		color = ft_atoi(cub->res[i]);
-		if (color < 0)
-			error(4);
+		cub->res_win[i] = ft_atoi(cub->res[i]);
+		if (cub->res_win[i] <= 0)
+			error(cub, 4);
 		i++;
 	}
 	ft_printf("\n");
@@ -129,18 +128,15 @@ int				parsing(t_cub_struct *cub)
 	char	*line;
 
 	line = NULL;
-	fd = open(cub->map, O_RDONLY);
+	fd = open(cub->map_cub, O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (get_infos(cub, line, 0) == -1)
-		{
-			error(0);
-			break ;
-		}
+			error(cub, 0);
 		free(line);
 	}
 	if (get_infos(cub, line, 1) == -1)
-		error(0);
+		error(cub, 0);
 	free(line);
 	close(fd);
 	return (0);

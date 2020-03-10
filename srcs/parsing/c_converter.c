@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   c_converter.c                                    .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/03 18:51:35 by akerdeka     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 18:04:43 by akerdeka    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   c_converter.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/03 18:51:35 by akerdeka          #+#    #+#             */
+/*   Updated: 2020/03/05 16:07:01 by akerdeka         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
@@ -27,30 +26,30 @@ static	int		all_digit(char *str)
 	return (1);
 }
 
-static int		ft_set_color(char *token)
+static int		ft_set_color(t_cub_struct *cub, char *token)
 {
 	int		color;
 
 	color = ft_atoi(token);
 	if (color < 0 || color > 255)
-		error(4);
+		error(cub, 4);
 	return (color);
 }
 
 void	c_converter_cub(t_cub_struct *cub)
 {
 	if (all_digit(cub->color_ceiling[1]))
-		cub->color->rgb.r = ft_set_color(cub->color_ceiling[1]);
+		cub->color->rgb.r = ft_set_color(cub, cub->color_ceiling[1]);
 	else
-		error(4);
+		error(cub, 4);
 	if (all_digit(cub->color_ceiling[2]))
-		cub->color->rgb.g = ft_set_color(cub->color_ceiling[2]);
+		cub->color->rgb.g = ft_set_color(cub, cub->color_ceiling[2]);
 	else
-		error(4);
+		error(cub, 4);
 	if (all_digit(cub->color_ceiling[3]))
-		cub->color->rgb.b = ft_set_color(cub->color_ceiling[3]);
+		cub->color->rgb.b = ft_set_color(cub, cub->color_ceiling[3]);
 	else
-		error(4);
+		error(cub, 4);
 	cub->color_c = cub->color->color;
 	ft_printf("color : %d\n\n", cub->color_c);
 }
