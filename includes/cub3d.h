@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:02:35 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 15:04:15 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 16:20:02 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,30 @@
 # define FOV 66
 # define MOVESPEED 0.073
 # define ROTSPEED 0.04
+
+typedef struct		s_bpm
+{
+	unsigned char	bitmap_type[2];
+	int				file_size;
+	short			reserved1;
+	short			reserved2;
+	unsigned int	offset_bits;
+}					t_bpm;
+
+typedef struct		s_bpm2
+{
+	unsigned int	size_header;
+	unsigned int	width;
+	unsigned int	height;
+	short int		planes;
+	short int		bit_count;
+	unsigned int	compression;
+	unsigned int	image_size;
+	unsigned int	ppm_x;
+	unsigned int	ppm_y;
+	unsigned int	clr_used;
+	unsigned int	clr_important;
+}					t_bpm2;
 
 typedef struct		s_vector
 {
@@ -64,6 +88,14 @@ typedef struct		s_img
 	int				endian;
 }					t_img;
 
+typedef struct		s_sprite
+{
+	double			x;
+	double			y;
+	int				texture;
+	double			dist;
+}					t_sprite;
+
 
 typedef struct		s_cub_struct
 {
@@ -91,17 +123,31 @@ typedef struct		s_cub_struct
 	t_vector	delta_dist;
 	t_vector	side_dist;
 	t_pos		step;
+	t_sprite	*sprite;
 	int			texNum;
+	int			Numsprite;
 	t_vector	tex;
 	int			tex_y;
 	int			tex_x;
 	t_vector	wall;
 	double		walldist;
+	double		*zbuffer;
+	double		*spritedist;
+	int			*spriteorder;
+	double		invdet;
+	t_vector	transform;
+	int			sprite_scrn_x;
+	int			sprite_height;
+	int			sprite_width;
+	t_pos		sprite_start;
+	t_pos		sprite_end;
+	int			stripe;
 	char		key_vert;
 	char		key_hor;
 	char		key_rot;
+	char		key_sprint;
 	t_img		*screen;
-	t_img		text[4];
+	t_img		text[5];
 	double		tex_step;
 	double		tex_pos;
 	int			line_height;
@@ -119,9 +165,12 @@ typedef struct		s_cub_struct
 	int			nb_line;
 	void		*mlx_ptr;
 	void		*mlx_win;
+	double		spritex;
+	double		spritey;
+	char		flag;
 }					t_cub_struct;
 
-int		cub3d(t_cub_struct *cub, char **ag);
+int		cub3d(t_cub_struct *cub,int ac, char **ag);
 int		error(t_cub_struct *cub, int type);
 int		parsing(t_cub_struct *cub);
 int		get_map(t_cub_struct *cub, char *line, int end_map);
@@ -132,6 +181,7 @@ int		get_texture_so(t_cub_struct *cub, char *line);
 int		get_texture_we(t_cub_struct *cub, char *line);
 int		get_texture_ea(t_cub_struct *cub, char *line);
 int		get_texture_sprite(t_cub_struct *cub, char *line);
+int		all_digit(char *str);
 void	f_converter(t_cub_struct *cub);
 void	c_converter_cub(t_cub_struct *cub);
 void	ft_exit(t_cub_struct *cub);
@@ -144,5 +194,8 @@ void	draw(t_cub_struct *cub, int x);
 void	restart(t_cub_struct *cub);
 void	load_text(t_cub_struct *cub);
 void	apply_textures(t_cub_struct *cub);
+void	draw_sprites(t_cub_struct *cub);
+void	sprite_raycast(t_cub_struct *cub);
+void	ft_save_bitmap(const char *filename, t_cub_struct *c);
 
 #endif

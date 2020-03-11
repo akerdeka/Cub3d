@@ -6,13 +6,13 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:01:54 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/05 12:35:18 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 16:11:53 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_color		*initvar_color(void)
+t_color				*initvar_color(void)
 {
 	t_color *setup;
 
@@ -35,6 +35,7 @@ t_cub_struct		*initvar_cub(void)
 	ft_bzero(cub->res, sizeof(char *) * 29);
 	cub->i = 0;
 	cub->map_cub = NULL;
+	cub->flag = 0;
 	cub->world_map = 0;
 	cub->fmt = NULL;
 	cub->color = initvar_color();
@@ -47,14 +48,36 @@ t_cub_struct		*initvar_cub(void)
 	cub->map_lenght = 0;
 	cub->hit = 0;
 	cub->side = 0;
+	cub->Numsprite = 0;
 	return (cub);
 }
 
-int					cub3d(t_cub_struct *cub, char **ag)
+static void		check_map_name(t_cub_struct *cub)
 {
+	size_t	i;
+
+	i = 0;
+	while (cub->map_cub[i] && cub->map_cub[i] != '.')
+		i++;
+	if (!(cub->map_cub[i] == '.' && cub->map_cub[i + 1] == 'c' &&
+	cub->map_cub[i + 2] == 'u' && cub->map_cub[i + 3] == 'b'))
+		error(cub, 5);
+}
+
+int				cub3d(t_cub_struct *cub,int ac, char **ag)
+{
+	if (ac > 3)
+	{
+		ft_printf("Error\nToo much arguments");
+		exit(1);
+	}
 	if (!ag[1])
-		return (0);
-	cub->map_cub = ag[1];
+		error(cub, 5);
+	if (!(cub->map_cub = ag[1]))
+		exit(1);
+	if (ac == 3 && !ft_strncmp(ag[2], "--save", 7))
+		cub->flag = 's';
+	check_map_name(cub);
 	parsing(cub);
 	ft_cub(cub);
 	free(cub);
@@ -63,7 +86,6 @@ int					cub3d(t_cub_struct *cub, char **ag)
 
 int					main(int ac, char **ag)
 {
-	ac = 0;
-	cub3d(initvar_cub(), ag);
+	cub3d(initvar_cub(),ac, ag);
 	return (0);
 }

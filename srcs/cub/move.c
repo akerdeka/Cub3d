@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:27:11 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 12:29:05 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 14:00:13 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,39 @@ void		move(t_cub_struct *cub)
 {
 	if (cub->key_vert == 'W')
 	{
-		cub->pos.x += cub->dir.x * MOVESPEED;
+		cub->pos.x += cub->dir.x * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.x -= cub->dir.x * MOVESPEED;
-		cub->pos.y += cub->dir.y * MOVESPEED;
+			cub->pos.x -= cub->dir.x * MOVESPEED * cub->key_sprint;
+		cub->pos.y += cub->dir.y * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.y -= cub->dir.y * MOVESPEED;
+			cub->pos.y -= cub->dir.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_vert == 'S')
 	{
-		cub->pos.x -= cub->dir.x * MOVESPEED;
+		cub->pos.x -= cub->dir.x * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.x += cub->dir.x * MOVESPEED;
-		cub->pos.y -= cub->dir.y * MOVESPEED;
+			cub->pos.x += cub->dir.x * MOVESPEED * cub->key_sprint;
+		cub->pos.y -= cub->dir.y * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.y += cub->dir.y * MOVESPEED;
+			cub->pos.y += cub->dir.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_hor == 'A')
 	{
-		cub->pos.x -= cub->plane.x * MOVESPEED;
+		cub->pos.x -= cub->plane.x * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.x += cub->plane.x * MOVESPEED;
-		cub->pos.y -= cub->plane.y * MOVESPEED;
+			cub->pos.x += cub->plane.x * MOVESPEED * cub->key_sprint;
+		cub->pos.y -= cub->plane.y * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.y += cub->plane.y * MOVESPEED;
+			cub->pos.y += cub->plane.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_hor == 'D')
 	{
-		cub->pos.x += cub->plane.x * MOVESPEED;
+		cub->pos.x += cub->plane.x * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.x -= cub->plane.x * MOVESPEED;
-		cub->pos.y += cub->plane.y * MOVESPEED;
+			cub->pos.x -= cub->plane.x * MOVESPEED * cub->key_sprint;
+		cub->pos.y += cub->plane.y * MOVESPEED * cub->key_sprint;
 		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
-			cub->pos.y -= cub->plane.y * MOVESPEED;
+			cub->pos.y -= cub->plane.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_rot == ARROW_RIGHT)
 	{
@@ -72,12 +72,11 @@ void		move(t_cub_struct *cub)
 		cub->plane.x = cub->old_plane.y * sin(-ROTSPEED)
 		+ cub->plane.x * cos(-ROTSPEED);
 	}
-	// cub->key = 0;
 	cub->map.x = (int)cub->pos.x;
 	cub->map.y = (int)cub->pos.y;
 }
 
-void	restart(t_cub_struct *cub)
+void		restart(t_cub_struct *cub)
 {
 	cub->pos.x = cub->pos_x_player + 0.5;
 	cub->pos.y = cub->pos_y_player + 0.5;

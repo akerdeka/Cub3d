@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 14:46:08 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 17:06:09 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:34:50 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				stock_map(t_cub_struct *cub, char *line, char *new_line)
 			if (cub->world_map[i][j] == '1')
 				ft_printf("\033[1;31m%c", cub->world_map[i][j]);
 			else
-				ft_printf("\033[0;30m%c", cub->world_map[i][j]);
+				ft_printf("\033[1;30m%c", cub->world_map[i][j]);
 			j++;
 		}
 		ft_printf("\n");

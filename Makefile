@@ -6,7 +6,7 @@
 #    By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/20 13:51:34 by akerdeka          #+#    #+#              #
-#    Updated: 2020/03/09 16:52:22 by akerdeka         ###   ########lyon.fr    #
+#    Updated: 2020/03/11 16:29:38 by akerdeka         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS_ERROR =	$(addprefix errors/, check_error.c ft_exit.c)
 
 
 SRCS_CUB =	$(addprefix cub/, cub.c init_player.c raycast.c move.c\
-				draw.c textures.c load_textures.c)
+				draw.c textures.c load_textures.c sprites_raycast.c\
+				draw_sprites.c save_bitmap.c)
 
 
 SRCS_PATH =	srcs/
@@ -61,7 +62,7 @@ NAME =	cub3D
 CC =	cc
 
 
-CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 -O3 #-fsanitize=address
 
 
 RM =	rm -rf

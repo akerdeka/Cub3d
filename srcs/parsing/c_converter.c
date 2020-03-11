@@ -6,13 +6,13 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:51:35 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/05 16:07:01 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:25:46 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static	int		all_digit(char *str)
+static	int		all_digit_c(char *str)
 {
 	size_t	i;
 
@@ -38,15 +38,15 @@ static int		ft_set_color(t_cub_struct *cub, char *token)
 
 void	c_converter_cub(t_cub_struct *cub)
 {
-	if (all_digit(cub->color_ceiling[1]))
+	if (all_digit_c(cub->color_ceiling[1]))
 		cub->color->rgb.r = ft_set_color(cub, cub->color_ceiling[1]);
 	else
 		error(cub, 4);
-	if (all_digit(cub->color_ceiling[2]))
+	if (all_digit_c(cub->color_ceiling[2]))
 		cub->color->rgb.g = ft_set_color(cub, cub->color_ceiling[2]);
 	else
 		error(cub, 4);
-	if (all_digit(cub->color_ceiling[3]))
+	if (all_digit_c(cub->color_ceiling[3]))
 		cub->color->rgb.b = ft_set_color(cub, cub->color_ceiling[3]);
 	else
 		error(cub, 4);

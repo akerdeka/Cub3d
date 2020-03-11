@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:19:27 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 16:17:39 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 16:43:39 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int				raycast(t_cub_struct *cub)
 		setup_draw(cub);
 		apply_textures(cub);
 		draw(cub, x);
+		cub->zbuffer[x] = cub->walldist;
 		x++;
 	}
+	sprite_raycast(cub);
 	return (1);
 }

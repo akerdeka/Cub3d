@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:02:11 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 17:07:53 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 16:40:24 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ static int		r_checker(t_cub_struct *cub, char *line)
 	}
 	if (cub->res[3] != NULL || cub->res[2] == NULL)
 		error(cub, 0);
-	// all digit ??
 	i = 1;
 	while (i <= 2)
 	{
+		if(all_digit(cub->res[i]) == 0)
+			error(cub, 4);
 		cub->res_win[i] = ft_atoi(cub->res[i]);
 		if (cub->res_win[i] <= 0)
 			error(cub, 4);
+		if (cub->res_win[i] < 500)
+			cub->res_win[i] = 500;
 		i++;
 	}
 	ft_printf("\n");
@@ -90,6 +93,8 @@ int				get_infos(t_cub_struct *cub, char *line, int end_map)
 {
 	static int	check = 0;
 
+	if (line == NULL)
+		error(cub, 5);
 	if (line[0] == 'R' && cub->res[0] == NULL)
 		r_checker(cub, line);
 	else if (line[0] == 'N' && line[1] == 'O' && cub->tex_no[0] == NULL)
@@ -128,7 +133,8 @@ int				parsing(t_cub_struct *cub)
 	char	*line;
 
 	line = NULL;
-	fd = open(cub->map_cub, O_RDONLY);
+	if (!(fd = open(cub->map_cub, O_RDONLY)))
+		error(cub, 5);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (get_infos(cub, line, 0) == -1)

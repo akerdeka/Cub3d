@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:46:15 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/05 16:02:53 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:27:58 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int		error(t_cub_struct *cub, int type)
 		ft_dprintf(2, "Error\nNewline forbidden in deffinition of map or after\n");
 	if (type == 4)
 		ft_dprintf(2, "Error\nNot a valid number\n");
+	if (type == 5)
+		ft_dprintf(2, "Error\nInvalid map\n");
+	if (type == 6)
+		ft_dprintf(2, "Error\nInvalid texture(s)\n");
 	free(cub);
 	exit(0);
 }

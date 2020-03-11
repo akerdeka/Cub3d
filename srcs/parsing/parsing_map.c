@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:55:32 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/06 12:35:58 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 19:04:22 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		verrif_map(t_cub_struct *cub, char *line, int end_map)
 	static int		check_map = 0;
 	static int		is_map_closed = 0;
 
+	i = 0;
 	i = 0;
 	if (ft_strchr(line, 'N') || ft_strchr(line, 'S') || ft_strchr(line, 'W') ||
 		ft_strchr(line, 'E'))

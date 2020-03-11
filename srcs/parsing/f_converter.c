@@ -6,13 +6,13 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:56:49 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 17:06:36 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:23:52 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static	int		all_digit(char *str)
+int		all_digit(char *str)
 {
 	size_t	i;
 
