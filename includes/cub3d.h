@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:02:35 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 16:20:02 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:49:19 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,9 @@ typedef struct		s_cub_struct
 	char		key_hor;
 	char		key_rot;
 	char		key_sprint;
+	char		key_act;
 	t_img		*screen;
-	t_img		text[5];
+	t_img		text[6];
 	double		tex_step;
 	double		tex_pos;
 	int			line_height;
@@ -168,6 +169,7 @@ typedef struct		s_cub_struct
 	double		spritex;
 	double		spritey;
 	char		flag;
+	char		door;
 }					t_cub_struct;
 
 int		cub3d(t_cub_struct *cub,int ac, char **ag);

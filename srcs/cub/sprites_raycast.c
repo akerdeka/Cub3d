@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 16:09:53 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 17:45:51 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:58:04 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void		sprite_raycast(t_cub_struct *cub)
 	while (i < cub->Numsprite)
 	{
 		cub->spriteorder[i] = i;
-		cub->spritedist[i] = ((cub->pos.x - cub->sprite[i].x) * (cub->pos.x - cub->sprite[i].x) + (cub->pos.y - cub->sprite[i].y) * (cub->pos.y - cub->sprite[i].y));
+		cub->spritedist[i] = ((cub->pos.x - cub->sprite[i].x) *
+		(cub->pos.x - cub->sprite[i].x) + (cub->pos.y - cub->sprite[i].y) *
+		(cub->pos.y - cub->sprite[i].y));
 		i++;
 	}
 	sort_sprites(cub);

@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:34:24 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 15:34:49 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:49:35 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		apply_textures(t_cub_struct *cub)
 		cub->texNum = cub->ray_dir.x < 0 ? 1 : 0;
 	else
 		cub->texNum = cub->ray_dir.y < 0 ? 2 : 3;
+	if (cub->door == 1)
+		cub->texNum = 5;
 	if (cub->side == 0)
 		cub->wall.x = cub->pos.y + cub->walldist * cub->ray_dir.y;
 	else

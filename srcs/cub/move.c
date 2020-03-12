@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:27:11 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 14:00:13 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:31:32 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,45 @@ void		move(t_cub_struct *cub)
 	if (cub->key_vert == 'W')
 	{
 		cub->pos.x += cub->dir.x * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.x -= cub->dir.x * MOVESPEED * cub->key_sprint;
 		cub->pos.y += cub->dir.y * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.y -= cub->dir.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_vert == 'S')
 	{
 		cub->pos.x -= cub->dir.x * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.x += cub->dir.x * MOVESPEED * cub->key_sprint;
 		cub->pos.y -= cub->dir.y * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.y += cub->dir.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_hor == 'A')
 	{
 		cub->pos.x -= cub->plane.x * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.x += cub->plane.x * MOVESPEED * cub->key_sprint;
 		cub->pos.y -= cub->plane.y * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.y += cub->plane.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_hor == 'D')
 	{
 		cub->pos.x += cub->plane.x * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.x -= cub->plane.x * MOVESPEED * cub->key_sprint;
 		cub->pos.y += cub->plane.y * MOVESPEED * cub->key_sprint;
-		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1')
+		if (cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '1' ||
+		cub->world_map[(int)cub->pos.x][(int)cub->pos.y] == '3')
 			cub->pos.y -= cub->plane.y * MOVESPEED * cub->key_sprint;
 	}
 	if (cub->key_rot == ARROW_RIGHT)

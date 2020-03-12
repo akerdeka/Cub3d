@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:19:27 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 16:43:39 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:24:51 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void		search_walls(t_cub_struct *cub)
 
 static void		DDA(t_cub_struct *cub)
 {
+	cub->door = 0;
 	while (cub->hit == 0)
 	{
 		if (cub->side_dist.x < cub->side_dist.y)
@@ -59,6 +60,11 @@ static void		DDA(t_cub_struct *cub)
 		}
 		if (cub->world_map[cub->map.x][cub->map.y] == '1')
 			cub->hit = 1;
+		if (cub->world_map[cub->map.x][cub->map.y] == '3')
+		{
+			cub->hit = 1;
+			cub->door = 1;
+		}
 	}
 }
 
@@ -85,7 +91,7 @@ int				raycast(t_cub_struct *cub)
 
 	x = 0;
 	load_text(cub);
-	while (x <= cub->res_win[1])
+	while (x <= cub->res_win[1] - 1)
 	{
 		cub->camerax = 2 * x / (double)cub->res_win[1] - 1;
 		cub->ray_dir.x = cub->dir.x + cub->plane.x * cub->camerax;

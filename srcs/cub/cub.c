@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:32:04 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 16:33:35 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:20:04 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	main_loop(t_cub_struct *cub)
 {
 	move(cub);
 	raycast(cub);
+	if (cub->key_act == 1)
+	{
+		if (cub->world_map[(int)(cub->pos.x + cub->dir.x)][(int)(cub->pos.y + cub->dir.y)] == '3')
+			cub->world_map[(int)(cub->pos.x + cub->dir.x)][(int)(cub->pos.y + cub->dir.y)] = '0';
+		cub->key_act = 0;
+	}
 	mlx_put_image_to_window(cub->mlx_ptr, cub->mlx_win, cub->screen->img, 0, 0);
 	return (1);
 }
@@ -66,6 +72,8 @@ int		ft_key_release(int keycode, t_cub_struct *cub)
 		cub->key_rot = 0;
 	else if (keycode == ARROW_LEFT)
 		cub->key_rot = 0;
+	else if (keycode == KEY_SPACE)
+		cub->key_act = 1;
 	return (1);
 }
 

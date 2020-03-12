@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:55:32 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 19:04:22 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 18:18:22 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,10 @@ int		get_map(t_cub_struct *cub, char *line, int end_map)
 	if (i > cub->map_lenght)
 		cub->map_lenght = i;
 	cub->nb_line++;
-	ft_printf("%s\n", line);
 	verrif_map(cub, line, end_map);
 	line = clear_spaces(line);
 	new_line = ft_strfjoin(new_line, line, 1);
 	i = ft_strlen(line);
-	printf("%d\n", cub->map_lenght);
 	while (end_map != 1 && i < cub->map_lenght)
 	{
 		new_line = ft_strfjoin(new_line, " ", 1);

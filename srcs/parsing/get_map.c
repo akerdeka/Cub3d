@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 14:46:08 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 14:34:50 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:12:40 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	lastcheckmap(t_cub_struct *cub)
 	{
 		while (cub->world_map[i][j])
 		{
+			if (cub->world_map[i][j] == ' ' && i != cub->nb_line && cub->world_map[i + 1][j] == '0')
+				error(cub, 1);
 			if (cub->world_map[i][j] == ' ' && i != 0 && cub->world_map[i - 1][j] == '0')
 				error(cub, 1);
 			if (cub->world_map[i][j] == ' ' && j != 0 && cub->world_map[i][j - 1] == '0')

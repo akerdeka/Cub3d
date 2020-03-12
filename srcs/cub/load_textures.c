@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:04:01 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 14:28:19 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:50:44 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ static int		load_sprites(t_cub_struct *cub)
 {
 	if ((cub->text[4].img = mlx_xpm_file_to_image(cub->mlx_ptr, cub->tex_sprite[1], &cub->text[4].width, &cub->text[4].height)))
 		cub->text[4].img_data = (int *)mlx_get_data_addr(cub->text[4].img, &cub->text[4].bpp, &cub->text[4].size_line, &cub->text[4].endian);
+	else
+		error(cub, 6);
+	if ((cub->text[5].img = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/minecraftdoor.xpm", &cub->text[5].width, &cub->text[5].height)))
+		cub->text[5].img_data = (int *)mlx_get_data_addr(cub->text[5].img, &cub->text[5].bpp, &cub->text[5].size_line, &cub->text[5].endian);
 	else
 		error(cub, 6);
 	return (0);
