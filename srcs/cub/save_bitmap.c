@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   save_bitmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:49:21 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 16:26:46 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/08/13 12:26:45 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
-static void		ft_bitmap_image(t_cub_struct *c, int fd, t_bpm2 bih)
+static void		ft_bitmap_image(t_cub_struct *c, int fd, t_bpm2 bih, int test)
 {
 	int				x;
 	int				y;
 	int				ble;
 	unsigned char	color[3];
 
-	write(fd, &bih, sizeof(bih));
+	test = write(fd, &bih, sizeof(bih));
 	y = c->res_win[2] - 1;
 	while (y >= 0)
 	{
@@ -32,15 +32,18 @@ static void		ft_bitmap_image(t_cub_struct *c, int fd, t_bpm2 bih)
 			color[1] = ble % 256;
 			ble /= 256;
 			color[2] = ble % 256;
-			write(fd, &color, 4);
+			test = write(fd, &color, 4);
 			x++;
 		}
 		y--;
 	}
+	if (test)
+		ft_printf("Creating screenshot.bmp\n");
 }
 
 void			ft_save_bitmap(const char *filename, t_cub_struct *c)
 {
+	int			test;
 	int			fd;
 	t_bpm		bfh;
 	t_bpm2		bih;
@@ -63,6 +66,6 @@ void			ft_save_bitmap(const char *filename, t_cub_struct *c)
 	bih.clr_important = 0;
 	close(open(filename, O_RDONLY | O_CREAT, S_IRWXU));
 	fd = open(filename, O_RDWR);
-	write(fd, &bfh, 14);
-	ft_bitmap_image(c, fd, bih);
+	test = write(fd, &bfh, 14);
+	ft_bitmap_image(c, fd, bih, test);
 }

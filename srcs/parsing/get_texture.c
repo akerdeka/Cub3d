@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:47:10 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/09 15:29:34 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 07:28:00 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int		get_texture_no(t_cub_struct *cub, char *line)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	cub->tex_no[0] = ft_strdup(ft_strtok(line, " ,\t"));
 	cub->tex_no[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->tex_no[2] = ft_strtok(NULL, " ,\t");
@@ -32,8 +33,9 @@ int		get_texture_no(t_cub_struct *cub, char *line)
 
 int		get_texture_so(t_cub_struct *cub, char *line)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	cub->tex_so[0] = ft_strdup(ft_strtok(line, " ,\t"));
 	cub->tex_so[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->tex_so[2] = ft_strtok(NULL, " ,\t");
@@ -50,8 +52,9 @@ int		get_texture_so(t_cub_struct *cub, char *line)
 
 int		get_texture_we(t_cub_struct *cub, char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	cub->tex_we[0] = ft_strdup(ft_strtok(line, " ,\t"));
 	cub->tex_we[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->tex_we[2] = ft_strtok(NULL, " ,\t");
@@ -68,8 +71,9 @@ int		get_texture_we(t_cub_struct *cub, char *line)
 
 int		get_texture_ea(t_cub_struct *cub, char *line)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	cub->tex_ea[0] = ft_strdup(ft_strtok(line, " ,\t"));
 	cub->tex_ea[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->tex_ea[2] = ft_strtok(NULL, " ,\t");
@@ -86,8 +90,9 @@ int		get_texture_ea(t_cub_struct *cub, char *line)
 
 int		get_texture_sprite(t_cub_struct *cub, char *line)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	cub->tex_sprite[0] = ft_strdup(ft_strtok(line, " ,\t"));
 	cub->tex_sprite[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
 	cub->tex_sprite[2] = ft_strtok(NULL, " ,\t");

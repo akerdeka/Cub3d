@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:14:21 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 18:11:06 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 07:38:43 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ static void	draw_wall(t_cub_struct *cub, int x)
 	y = cub->draw_start;
 	while (y < cub->draw_end)
 	{
-		cub->tex_y = (int)cub->tex_pos & (cub->text[cub->texNum].height - 1);
+		cub->tex_y = (int)cub->tex_pos & (cub->text[cub->texnum].height - 1);
 		cub->tex_pos += cub->tex_step;
-		cub->color->color = cub->text[cub->texNum].img_data[cub->tex_y * cub->text[cub->texNum].width + cub->tex_x];
+		cub->color->color = cub->text[cub->texnum].img_data[cub->tex_y *
+			cub->text[cub->texnum].width + cub->tex_x];
 		cub->screen->img_data[y * cub->res_win[1] + x] = cub->color->color;
 		y++;
-	} 
+	}
 }
 
 void		draw(t_cub_struct *cub, int x)

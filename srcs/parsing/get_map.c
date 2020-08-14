@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 14:46:08 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/12 12:12:40 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/08/13 11:50:18 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	lastcheckmap(t_cub_struct *cub)
+static void		lastcheckmap(t_cub_struct *cub)
 {
 	int		i;
 	int		j;
@@ -23,11 +23,11 @@ static void	lastcheckmap(t_cub_struct *cub)
 	{
 		while (cub->world_map[i][j])
 		{
-			if (cub->world_map[i][j] == ' ' && i != cub->nb_line && cub->world_map[i + 1][j] == '0')
+			if (cub->world_map[i][j] == ' ' && i != 0 &&
+				cub->world_map[i - 1][j] == '0')
 				error(cub, 1);
-			if (cub->world_map[i][j] == ' ' && i != 0 && cub->world_map[i - 1][j] == '0')
-				error(cub, 1);
-			if (cub->world_map[i][j] == ' ' && j != 0 && cub->world_map[i][j - 1] == '0')
+			if (cub->world_map[i][j] == ' ' && j != 0 &&
+				cub->world_map[i][j - 1] == '0')
 				error(cub, 1);
 			if (cub->world_map[i][j] == ' ' && cub->world_map[i][j + 1] == '0')
 				error(cub, 1);
@@ -38,7 +38,7 @@ static void	lastcheckmap(t_cub_struct *cub)
 	}
 }
 
-char		*clear_spaces(char *line)
+char			*clear_spaces(char *line)
 {
 	char	*res;
 	int		i;
@@ -68,8 +68,11 @@ char		*clear_spaces(char *line)
 
 int				stock_map(t_cub_struct *cub, char *line, char *new_line)
 {
-	int		i = 0;
-	int		j = 0;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
 	new_line = ft_strfjoin(new_line, line, 1);
 	new_line = ft_strfjoin(new_line, "\n", 1);
 	cub->world_map = ft_split(new_line, '\n');

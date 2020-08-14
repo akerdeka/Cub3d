@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:10:41 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/02/17 15:42:41 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 08:09:06 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftdprintf.h"
 
-void			dpf_ft_algo(const char *fmt, t_dpf_struct *pf)
+void				dpf_ft_algo(const char *fmt, t_dpf_struct *pf)
 {
 	if (fmt[pf->i] != '%')
 		dpf_get_basic(fmt, pf);
@@ -53,7 +53,7 @@ t_dpf_struct		*dpf_initvar(void)
 	return (pf);
 }
 
-static void		dpf_reinitvar(t_dpf_struct *pf)
+static void			dpf_reinitvar(t_dpf_struct *pf)
 {
 	if (pf->base_write != NULL)
 		free(pf->base_write);
@@ -79,7 +79,7 @@ static void		dpf_reinitvar(t_dpf_struct *pf)
 	pf->result = NULL;
 }
 
-static void		ft_dprintf_norme(int fd, const char *fmt, t_dpf_struct *pf)
+static void			ft_dprintf_norme(int fd, const char *fmt, t_dpf_struct *pf)
 {
 	while (fmt[pf->i] != '\0')
 	{
@@ -105,10 +105,10 @@ static void		ft_dprintf_norme(int fd, const char *fmt, t_dpf_struct *pf)
 	}
 }
 
-int				ft_dprintf(int fd, const char *fmt, ...)
+int					ft_dprintf(int fd, const char *fmt, ...)
 {
 	t_dpf_struct	*pf;
-	int			j;
+	int				j;
 
 	pf = dpf_initvar();
 	va_start(pf->ap, fmt);

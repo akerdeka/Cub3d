@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:39:56 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/10 19:11:39 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/08/11 16:53:41 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,41 +61,17 @@ static void		initplane(t_cub_struct *cub)
 	cub->key_sprint = 1;
 }
 
-void			init_player(t_cub_struct *cub)
+static void		init_player_2(t_cub_struct *cub, int x, int y, int i)
 {
-	int		x;
-	int		y;
-	int		i;
-
-	i = 0;	
-	x = 0;
-	y = 0;
-	cub->pos.x = (double)cub->pos_x_player + (double)0.5;
-	cub->pos.y = (double)cub->pos_y_player + (double)0.5;
-	initvdir(cub);
-	initplane(cub);
-	while(cub->world_map[y])
-	{
-		x = 0 ;
-		while (cub->world_map[y][x])
-		{
-			if (cub->world_map[y][x] == '2')
-			{
-				cub->Numsprite++;
-			}
-			x++;
-		}
-		y++;
-	}
-	cub->sprite = malloc(sizeof(t_sprite) * cub->Numsprite);
+	cub->sprite = malloc(sizeof(t_sprite) * cub->numsprite);
 	cub->zbuffer = malloc(sizeof(double) * (cub->res_win[1] + 1));
-	cub->spriteorder = malloc(sizeof(int) * cub->Numsprite);
-	cub->spritedist = malloc(sizeof(double) * cub->Numsprite);
+	cub->spriteorder = malloc(sizeof(int) * cub->numsprite);
+	cub->spritedist = malloc(sizeof(double) * cub->numsprite);
 	x = 0;
 	y = 0;
-	while(cub->world_map[y])
+	while (cub->world_map[y])
 	{
-		x = 0 ;
+		x = 0;
 		while (cub->world_map[y][x])
 		{
 			if (cub->world_map[y][x] == '2')
@@ -108,4 +84,33 @@ void			init_player(t_cub_struct *cub)
 		}
 		y++;
 	}
+}
+
+void			init_player(t_cub_struct *cub)
+{
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	cub->pos.x = (double)cub->pos_x_player + (double)0.5;
+	cub->pos.y = (double)cub->pos_y_player + (double)0.5;
+	initvdir(cub);
+	initplane(cub);
+	while (cub->world_map[y])
+	{
+		x = 0;
+		while (cub->world_map[y][x])
+		{
+			if (cub->world_map[y][x] == '2')
+			{
+				cub->numsprite++;
+			}
+			x++;
+		}
+		y++;
+	}
+	init_player_2(cub, x, y, i);
 }

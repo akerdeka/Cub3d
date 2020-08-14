@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/20 13:51:34 by akerdeka          #+#    #+#              #
-#    Updated: 2020/03/11 16:29:38 by akerdeka         ###   ########lyon.fr    #
+#    Updated: 2020/08/14 14:21:22 by akerdeka         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-BLUE =\033[0;38;5;123m
+BLUE = \033[0;38;5;123m
 LIGHT_PINK = \033[0;38;5;200m
 PINK = \033[0;38;5;198m
 DARK_BLUE = \033[1;38;5;110m
@@ -24,7 +24,8 @@ ORANGE = \033[3;91m
 YELLOW = \033[0;33m
 
 SRCS_PARSING =	$(addprefix parsing/, parsing.c get_texture.c f_converter.c\
-					c_converter.c parsing_map.c get_map.c)
+					c_converter.c parsing_map.c get_map.c rfc_checker.c\
+					verrif_map.c)
 
 
 SRCS_ERROR =	$(addprefix errors/, check_error.c ft_exit.c)
@@ -35,74 +36,88 @@ SRCS_CUB =	$(addprefix cub/, cub.c init_player.c raycast.c move.c\
 				draw_sprites.c save_bitmap.c)
 
 
+
 SRCS_PATH =	srcs/
 
 
 SRCS_NAME =	cub3d.c $(SRCS_PARSING) $(SRCS_ERROR) $(SRCS_CUB)
 
 
-SRCS =	$(addprefix $(SRC_PATH), $(SRCS_NAME))
+SRCS =	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
 
-OBJ_NAME =	${SRCS_NAME:.c=.o}
+OBJ =	libmlx/libmlx.a libft/libft.a $(SRCS:.c=.o)
 
 
-OBJ_PATH =	bin/
+HEADERS =	includes/*.h
 
 
-OBJ =	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
-
-
-HEADER =	includes/
-
-
-NAME =	cub3D
+NAME =	Cub3D
 
 
 CC =	cc
 
 
-CFLAGS =	-Wall -Wextra -Werror -g3 -O3 #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -O3 #-fsanitize=leak -g3
 
 
 RM =	rm -rf
 
 
-LIBFT = libft/libft.a
+MINILIBX_PATH =	./libmlx/
 
 
-MINILIBX = libmlx/libmlx.a
+MLX =	-Llibft -lft -L libmlx -lmlx -lbsd -lXext -lX11 -lm
 
-FRAMEWORK = -l mlx -framework OpenGL -framework AppKit -L libmlx -O3 -I libmlx
 
-all :	$(OBJ_PATH) $(LIBFT) $(MINILIBX) $(NAME) includes/cub3d.h includes/keycode.h
+LIBFT_PATH = ./libft/
 
-$(LIBFT):
-	make -C libft/
 
-$(MINILIBX):
-	make -C libmlx/
+all :	libft_all minilibx_all $(NAME)
 
-$(OBJ_PATH):
-	@mkdir -p bin/ 2> /dev/null
-	@mkdir -p bin/parsing 2> /dev/null
-	@mkdir -p bin/errors 2> /dev/null
-	@mkdir -p bin/cub 2> /dev/null
 
-$(OBJ_PATH)%.o: $(SRCS_PATH)%.c $(HEADER) Makefile includes/cub3d.h includes/keycode.h
-	@gcc $(CFLAGS) -I $(HEADER) -I libmlx -c $< -o $@
+$(NAME) :	$(OBJ)
+					@$(CC) $(CFLAGS) -o $@ $(OBJ) $(MLX)
+			@echo "\033[38;2;153;102;255;1m######################################"
+			@echo "\033[38;2;153;102;255;1m#\033[38;2;0;204;0;1m\tCompiling $(NAME)...   \033[38;2;153;102;255;1m\t     #\n#\033[38;2;0;204;0;1m\t\tDone\t\t     \033[0m\033[38;2;153;102;255;1m#"
+			@echo "\033[38;2;153;102;255;1m######################################\033[0m"
 
-$(NAME):	$(OBJ) $(HEADER)
-	@gcc $(CFLAGS) $(FRAMEWORK) $(LIBFT) $(OBJ) -o $(NAME)
-	@printf "	\033[2K\r$(DARK_BLUE)cube3D\t:\t$(LIGHT_GREEN)Updated\n\033[0m"
 
-clean : 
-	@$(RM) $(OBJ_PATH) cub3D.dSYM
+%.o: %.c $(HEADERS)
+			@$(CC) $(CFLAGS) -o $@ -c $<
+			@echo "\033[38;2;255;204;0;1mCompiling object $@...\nDone\033[0m"
 
-fclean : 	clean
-	@rm -f $(NAME)
 
-re : fclean all
+clean :	libft_clean minilibx_clean
+			@$(RM) -f $(OBJ)
+			@echo "\033[38;2;255;51;0;1mDeleting objects file...\nDone"
+
+
+fclean :	libft_fclean clean
+				@rm -f $(NAME)
+				@echo "Deleting $(NAME)...\nDone\033[0m"
+
+				
+re :	fclean all
+
+libft_all :
+				make -C $(LIBFT_PATH) all
+
+libft_clean :
+				@make -C $(LIBFT_PATH) clean
+
+
+libft_fclean :
+				make -C $(LIBFT_PATH) fclean
+
+
+minilibx_all :
+				@make -C $(MINILIBX_PATH) all
+
+
+minilibx_clean :
+				@make -C $(MINILIBX_PATH) clean
+
 
 relib:
 	@$(MAKE) fclean

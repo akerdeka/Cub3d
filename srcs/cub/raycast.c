@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:19:27 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/12 13:24:51 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 08:48:56 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		search_walls(t_cub_struct *cub)
 	}
 }
 
-static void		DDA(t_cub_struct *cub)
+static void		dda(t_cub_struct *cub)
 {
 	cub->door = 0;
 	while (cub->hit == 0)
@@ -97,7 +97,7 @@ int				raycast(t_cub_struct *cub)
 		cub->ray_dir.x = cub->dir.x + cub->plane.x * cub->camerax;
 		cub->ray_dir.y = cub->dir.y + cub->plane.y * cub->camerax;
 		search_walls(cub);
-		DDA(cub);
+		dda(cub);
 		setup_draw(cub);
 		apply_textures(cub);
 		draw(cub, x);

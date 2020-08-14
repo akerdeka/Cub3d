@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   convert_p.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:59:19 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/02/17 15:35:13 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 08:09:14 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libftdprintf.h"
 

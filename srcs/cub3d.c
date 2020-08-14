@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:01:54 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 18:15:52 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/08/13 12:15:13 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ t_cub_struct		*initvar_cub(void)
 	cub->map_lenght = 0;
 	cub->hit = 0;
 	cub->side = 0;
-	cub->Numsprite = 0;
+	cub->numsprite = 0;
 	return (cub);
 }
 
-static void		check_map_name(t_cub_struct *cub)
+static void			check_map_name(t_cub_struct *cub)
 {
 	size_t	i;
 
@@ -64,7 +64,7 @@ static void		check_map_name(t_cub_struct *cub)
 		error(cub, 5);
 }
 
-int				cub3d(t_cub_struct *cub,int ac, char **ag)
+int					cub3d(t_cub_struct *cub, int ac, char **ag, t_color *setup)
 {
 	if (ac > 3)
 	{
@@ -80,12 +80,13 @@ int				cub3d(t_cub_struct *cub,int ac, char **ag)
 	check_map_name(cub);
 	parsing(cub);
 	ft_cub(cub);
+	free(setup);
 	free(cub);
 	return (0);
 }
 
 int					main(int ac, char **ag)
 {
-	cub3d(initvar_cub(),ac, ag);
+	cub3d(initvar_cub(), ac, ag, initvar_color());
 	return (0);
 }

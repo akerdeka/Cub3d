@@ -13,7 +13,7 @@ SRCS_LIBFT =	$(addprefix ./, ft_strndup.c ft_strtok.c ft_isalnum.c\
 					ft_strdup.c ft_strlen.c ft_strrchr.c ft_toupper.c\
 					ft_calloc.c ft_isdigit.c ft_memchr.c ft_memset.c ft_putstr_fd.c\
 					ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_strfjoin.c get_next_line.c\
-					ft_itoa_base.c ft_itoa_base_maj.c ft_uitoa.c)
+					ft_itoa_base.c ft_itoa_base_maj.c ft_uitoa.c ft_countchar.c)
 
 SRCS_PRINTF =	$(addprefix Printf/, algo.c\
 					convert.c convert_c.c convert_d.c\

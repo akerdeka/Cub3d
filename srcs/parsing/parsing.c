@@ -3,96 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:02:11 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 16:40:24 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/08/11 13:34:31 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../../includes/cub3d.h"
 
-static int		f_checker(t_cub_struct *cub, char *line)
-{
-	int i;
-
-	i = 0;
-	cub->color_flor[0] = ft_strdup(ft_strtok(line, " ,\t"));
-	cub->color_flor[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_flor[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_flor[3] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_flor[4] = ft_strtok(NULL, " ,\t");
-	while (i < 5)
-	{
-		ft_printf("%s\n", cub->color_flor[i]);
-		i++;
-	}
-	ft_printf("\n");
-	if (cub->color_flor[4] != NULL || cub->color_flor[3] == NULL)
-		error(cub, 0);
-	f_converter(cub);
-	return (0);
-}
-
-static int		c_checker(t_cub_struct *cub, char *line)
-{
-	int i;
-
-	i = 0;
-	cub->color_ceiling[0] = ft_strdup(ft_strtok(line, " ,\t"));
-	cub->color_ceiling[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_ceiling[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_ceiling[3] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->color_ceiling[4] = ft_strtok(NULL, " ,\t");
-	while (i < 5)
-	{
-		ft_printf("%s\n", cub->color_ceiling[i]);
-		i++;
-	}
-	ft_printf("\n");
-	if (cub->color_ceiling[4] != NULL || cub->color_ceiling[3] == NULL)
-		error(cub, 0);
-	c_converter_cub(cub);
-	return (0);
-}
-
-static int		r_checker(t_cub_struct *cub, char *line)
-{
-	int	i;
-
-	i = 0;
-	cub->res[0] = ft_strdup(ft_strtok(line, " ,\t"));
-	cub->res[1] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->res[2] = ft_strdup(ft_strtok(NULL, " ,\t"));
-	cub->res[3] = ft_strtok(NULL, " \t");
-	while (i < 4)
-	{
-		ft_printf("%s\n", cub->res[i]);
-		i++;
-	}
-	if (cub->res[3] != NULL || cub->res[2] == NULL)
-		error(cub, 0);
-	i = 1;
-	while (i <= 2)
-	{
-		if(all_digit(cub->res[i]) == 0)
-			error(cub, 4);
-		cub->res_win[i] = ft_atoi(cub->res[i]);
-		if (cub->res_win[i] <= 0)
-			error(cub, 4);
-		if (cub->res_win[i] < 500)
-			cub->res_win[i] = 500;
-		i++;
-	}
-	ft_printf("\n");
-	return (0);
-}
-
-int				get_infos(t_cub_struct *cub, char *line, int end_map)
+static int	get_infos_2(t_cub_struct *cub, char *line, int end_map, int a)
 {
 	static int	check = 0;
 
+	if (a == 1)
+	{
+		if (line[0] == 'S' && cub->tex_sprite[0] == NULL)
+			get_texture_sprite(cub, line);
+		else if (line[0] == 'F' && cub->color_flor[0] == NULL)
+			f_checker(cub, line);
+		else if (line[0] == 'C' && cub->color_ceiling[0] == NULL)
+			c_checker(cub, line);
+		else if (check == 0 && end_map != 1 && line[0] == '\0')
+			return (0);
+		else if (cub->res[0] == NULL || cub->tex_no[0] == NULL ||
+			cub->tex_so[0] == NULL || cub->tex_we[0] == NULL ||
+			cub->tex_ea[0] == NULL || cub->tex_sprite[0] == NULL ||
+			cub->color_flor[0] == NULL || cub->color_ceiling[0] == NULL)
+			return (-1);
+		else
+		{
+			check = 1;
+			get_map(cub, line, end_map);
+		}
+	}
+	return (0);
+}
+
+int			get_infos(t_cub_struct *cub, char *line, int end_map)
+{
+	int			a;
+
+	a = 0;
 	if (line == NULL)
 		error(cub, 5);
 	if (line[0] == 'R' && cub->res[0] == NULL)
@@ -105,28 +58,14 @@ int				get_infos(t_cub_struct *cub, char *line, int end_map)
 		get_texture_we(cub, line);
 	else if (line[0] == 'E' && line[1] == 'A' && cub->tex_ea[0] == NULL)
 		get_texture_ea(cub, line);
-	else if (line[0] == 'S' && cub->tex_sprite[0] == NULL)
-		get_texture_sprite(cub, line);
-	else if (line[0] == 'F' && cub->color_flor[0] == NULL)
-		f_checker(cub, line);
-	else if (line[0] == 'C' && cub->color_ceiling[0] == NULL)
-		c_checker(cub, line);
-	else if (check == 0 && end_map != 1 && line[0] == '\0')
-		return (0);
-	else if (cub->res[0] == NULL || cub->tex_no[0] == NULL ||
-		cub->tex_so[0] == NULL || cub->tex_we[0] == NULL ||
-		cub->tex_ea[0] == NULL || cub->tex_sprite[0] == NULL ||
-		cub->color_flor[0] == NULL || cub->color_ceiling[0] == NULL)
-		return (-1);
 	else
-	{
-		check = 1;
-		get_map(cub, line, end_map);
-	}
+		a = 1;
+	if (get_infos_2(cub, line, end_map, a) == -1)
+		return (-1);
 	return (0);
 }
 
-int				parsing(t_cub_struct *cub)
+int			parsing(t_cub_struct *cub)
 {
 	int		fd;
 	int		ret;

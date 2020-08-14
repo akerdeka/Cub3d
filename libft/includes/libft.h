@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   libft.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/18 15:29:47 by akerdeka     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 13:37:28 by akerdeka    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/18 15:29:47 by akerdeka          #+#    #+#             */
+/*   Updated: 2020/08/11 11:52:27 by akerdeka         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
@@ -60,5 +59,6 @@ char	*ft_itoa_base_maj(unsigned long long value, int base);
 char	*ft_uitoa(unsigned int n);
 char	*ft_strndup(const char *s, int n);
 int		get_next_line(int fd, char **line);
+int		ft_countchar(char *str, char c);
 
 #endif

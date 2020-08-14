@@ -1,0 +1,16 @@
+R 1920 1080
+
+NO ./textures/eagle.xpm
+SO ./textures/bluestone.xpm
+EA ./textures/wall_1.xpm
+WE ./textures/purplestone.xpm
+
+S ./textures/eagle.xpm
+
+F 0,0,0
+C 255,255,255
+
+11111   11111
+10001   10001
+130W1   11111
+11111

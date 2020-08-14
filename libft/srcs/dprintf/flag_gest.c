@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   flag_gest.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:41:57 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/02/17 15:41:47 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 08:10:31 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libftdprintf.h"
 

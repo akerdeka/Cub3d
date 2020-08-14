@@ -3,75 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 15:48:16 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/02/24 10:21:48 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 07:16:58 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYCODE_H
 # define KEYCODE_H
 
-# define KEY_ESC		53
-# define KEY_A			0
-# define KEY_B			11
-# define KEY_C			8
-# define KEY_D			2
-# define KEY_E			14
-# define KEY_F			3
-# define KEY_G			5
-# define KEY_H			4
-# define KEY_I			34
-# define KEY_J			38
-# define KEY_K			40
-# define KEY_L			37
-# define KEY_M			46
-# define KEY_N			45
-# define KEY_O			31
-# define KEY_P			35
-# define KEY_Q			12
-# define KEY_R			15
-# define KEY_S			1
-# define KEY_T			17
-# define KEY_U			32
-# define KEY_V			9
-# define KEY_W			13
-# define KEY_X			7
-# define KEY_Y			16
-# define KEY_Z			6
-# define KEY_SPACE		49
-# define KEY_TILDE		50
-# define KEY_1			18
-# define KEY_2			19
-# define KEY_3			20
-# define KEY_4			21
-# define KEY_5			23
-# define KEY_6			22
-# define KEY_7			26
-# define KEY_8			28
-# define KEY_9			25
-# define KEY_0			29
-# define KEY_MINUS		27
-# define KEY_EQUAL		24
-# define KEY_LBRK		33
-# define KEY_RBRK		30
-# define KEY_BKSLASH	42
-# define KEY_SMCOLON	41
-# define KEY_QUOTE		39
-# define KEY_COMMA		43
-# define KEY_DOT		47
-# define KEY_SLASH		44
-# define KEY_TAB		48
-# define KEY_DELETE		51
-# define KEY_RETURN		36
-# define KEY_CPLOCK		272
-# define KEY_LSHIFT		257
-# define KEY_RSHIFT		258
-# define ARROW_UP		126
-# define ARROW_DOWN		125
-# define ARROW_LEFT		123
-# define ARROW_RIGHT	124
+# define KEY_ESC		65307
+# define KEY_A			97
+# define KEY_B			98
+# define KEY_C			99
+# define KEY_D			100
+# define KEY_E			101
+# define KEY_F			102
+# define KEY_G			103
+# define KEY_H			104
+# define KEY_I			105
+# define KEY_J			106
+# define KEY_K			107
+# define KEY_L			108
+# define KEY_M			109
+# define KEY_N			110
+# define KEY_O			111
+# define KEY_P			112
+# define KEY_Q			113
+# define KEY_R			114
+# define KEY_S			115
+# define KEY_T			116
+# define KEY_U			117
+# define KEY_V			118
+# define KEY_W			119
+# define KEY_X			120
+# define KEY_Y			121
+# define KEY_Z			122
+# define KEY_SPACE		32
+# define KEY_TILDE		178
+# define KEY_1			38
+# define KEY_2			233
+# define KEY_3			34
+# define KEY_4			39
+# define KEY_5			40
+# define KEY_6			45
+# define KEY_7			232
+# define KEY_8			95
+# define KEY_9			231
+# define KEY_0			224
+# define KEY_MINUS		41
+# define KEY_EQUAL		61
+# define KEY_LSHIFT		65505
+# define KEY_RSHIFT		65506
+# define ARROW_UP		65362
+# define ARROW_DOWN		65364
+# define ARROW_LEFT		65361
+# define ARROW_RIGHT	65363
 # define PAD_0			82
 # define PAD_1			83
 # define PAD_2			84

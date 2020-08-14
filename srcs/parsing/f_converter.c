@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   f_converter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:56:49 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 14:23:52 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 07:32:15 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int		all_digit(char *str)
+int				all_digit(char *str)
 {
 	size_t	i;
 
@@ -36,7 +36,7 @@ static int		ft_set_color(t_cub_struct *cub, char *token)
 	return (color);
 }
 
-void	f_converter(t_cub_struct *cub)
+void			f_converter(t_cub_struct *cub)
 {
 	if (all_digit(cub->color_flor[1]))
 		cub->color->rgb.r = ft_set_color(cub, cub->color_flor[1]);

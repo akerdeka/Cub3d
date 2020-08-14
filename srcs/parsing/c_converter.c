@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_converter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akerdeka <akerdeka@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:51:35 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/03/11 14:25:46 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/07/15 07:31:25 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		ft_set_color(t_cub_struct *cub, char *token)
 	return (color);
 }
 
-void	c_converter_cub(t_cub_struct *cub)
+void			c_converter_cub(t_cub_struct *cub)
 {
 	if (all_digit_c(cub->color_ceiling[1]))
 		cub->color->rgb.r = ft_set_color(cub, cub->color_ceiling[1]);
