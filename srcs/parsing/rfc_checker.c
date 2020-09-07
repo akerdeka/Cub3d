@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 12:06:59 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/08/11 12:09:43 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/09/07 13:21:42 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		r_checker(t_cub_struct *cub, char *line)
 			error(cub, 4);
 		if (cub->res_win[i] < 500)
 			cub->res_win[i] = 500;
+		if (cub->res_win[i] > 2000)
+			cub->res_win[i] = 2000;
 		i++;
 	}
 	return (0);

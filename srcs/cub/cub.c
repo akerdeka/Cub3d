@@ -6,7 +6,7 @@
 /*   By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:32:04 by akerdeka          #+#    #+#             */
-/*   Updated: 2020/08/13 12:16:26 by akerdeka         ###   ########lyon.fr   */
+/*   Updated: 2020/09/07 13:31:54 by akerdeka         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			ft_cub(t_cub_struct *cub)
 		ft_exit(cub);
 	init_player(cub);
 	cub->screen = malloc(sizeof(t_img) * 1);
-	printf("%d %d\n", cub->res_win[1], cub->res_win[2]);
+	ft_printf("%d %d\n", cub->res_win[1], cub->res_win[2]);
 	if ((cub->mlx_win = mlx_new_window(cub->mlx_ptr, cub->res_win[1],
 		cub->res_win[2], "Cub3D")) == NULL)
 		ft_exit(cub);
