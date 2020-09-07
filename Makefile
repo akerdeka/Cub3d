@@ -6,7 +6,7 @@
 #    By: akerdeka <akerdeka@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/20 13:51:34 by akerdeka          #+#    #+#              #
-#    Updated: 2020/09/07 13:18:02 by akerdeka         ###   ########lyon.fr    #
+#    Updated: 2020/09/07 13:50:56 by akerdeka         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ NAME =	Cub3D
 CC =	cc
 
 
-CFLAGS = -Wall -Werror -Wextra -O3 #-fsanitize=leak -g3
+CFLAGS = -Wall -Werror -Wextra -O3
 
 
 RM =	rm -rf
